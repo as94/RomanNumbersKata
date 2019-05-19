@@ -15,12 +15,12 @@ namespace RomanNumbers.Core
             { 6, "VI" },
             { 7, "VII" },
             { 8, "VIII" },
-            { 9, "IX" },
-            { 10, "X" }
+            { 9, "IX" }
         };
 
         private static readonly Dictionary<int, string> FromTwentyToHundredTable = new Dictionary<int, string>()
         {
+            { 10, "X" },
             { 20, "XX" },
             { 30, "XXX" },
             { 40, "XL" },
@@ -44,14 +44,18 @@ namespace RomanNumbers.Core
                 throw new InvalidOperationException($"Input number format in incorrect: {inputNumber}");
             }
 
-            if (number <= 10)
+            if (number < 10)
             {
                 return FromOneToTenTable[number];
             }
 
-            if (number > 10 && number % 10 == 0)
+            if (number >= 10 && number <= 100)
             {
-                return FromTwentyToHundredTable[number];
+                var secondDigit = number / 10;
+                var firstDigit = number % 10;
+                
+                return FromTwentyToHundredTable[secondDigit * 10] +
+                       (firstDigit == 0 ? string.Empty : FromOneToTenTable[firstDigit]);
             }
             
             return string.Empty;

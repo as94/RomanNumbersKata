@@ -2,8 +2,17 @@ using Xunit;
 
 namespace RomanNumbers.Test.RomanNumbersGeneratorTests
 {
-    public class FromTwentyToHundredTests
+    public class FromTenToHundredTests
     {
+        [Fact]
+        public void ForTenNumber_ShouldConvertCorrectly()
+        {
+            var inputNumber = "10";
+            var outputNumber = Core.RomanNumbers.ConvertFromArabic(inputNumber);
+
+            Assert.Equal("X", outputNumber);
+        }
+        
         [Fact]
         public void ForTwenty_ShouldConvertCorrectly()
         {
@@ -74,6 +83,38 @@ namespace RomanNumbers.Test.RomanNumbersGeneratorTests
             var inputNumber = "100";
             var outputNumber = Core.RomanNumbers.ConvertFromArabic(inputNumber);
             Assert.Equal("C", outputNumber);
+        }
+
+        [Fact]
+        public void ForEleven_ShouldConvertCorrectly()
+        {
+            var inputNumber = "11";
+            var outputNumber = Core.RomanNumbers.ConvertFromArabic(inputNumber);
+            Assert.Equal("XI", outputNumber);
+        }
+
+        [Fact]
+        public void ForTwentyThree_ShouldConvertCorrectly()
+        {
+            var inputNumber = "23";
+            var outputNumber = Core.RomanNumbers.ConvertFromArabic(inputNumber);
+            Assert.Equal("XXIII", outputNumber);
+        }
+
+        [Fact]
+        public void ForFortyNine_ShouldConvertCorrectly()
+        {
+            var inputNumber = "49";
+            var outputNumber = Core.RomanNumbers.ConvertFromArabic(inputNumber);
+            Assert.Equal("XLIX", outputNumber);
+        }
+
+        [Fact]
+        public void ForNinetySeven_ShouldConvertCorrectly()
+        {
+            var inputNumber = "97";
+            var outputNumber = Core.RomanNumbers.ConvertFromArabic(inputNumber);
+            Assert.Equal("XCVII", outputNumber);
         }
     }
 }

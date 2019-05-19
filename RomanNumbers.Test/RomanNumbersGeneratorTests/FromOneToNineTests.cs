@@ -2,7 +2,7 @@ using Xunit;
 
 namespace RomanNumbers.Test.RomanNumbersGeneratorTests
 {
-    public class FromOneToTenTests
+    public class FromOneToNineTests
     {
         [Fact]
         public void ForOneNumber_ShouldConvertCorrectly()
@@ -83,15 +83,6 @@ namespace RomanNumbers.Test.RomanNumbersGeneratorTests
             var outputNumber = Core.RomanNumbers.ConvertFromArabic(inputNumber);
 
             Assert.Equal("IX", outputNumber);
-        }
-
-        [Fact]
-        public void ForTenNumber_ShouldConvertCorrectly()
-        {
-            var inputNumber = "10";
-            var outputNumber = Core.RomanNumbers.ConvertFromArabic(inputNumber);
-
-            Assert.Equal("X", outputNumber);
         }
     }
 }
