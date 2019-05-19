@@ -2,7 +2,7 @@ using Xunit;
 
 namespace RomanNumbers.Test.RomanNumbersGeneratorTests
 {
-    public class TensTests
+    public class FromOneToTenTests
     {
         [Fact]
         public void ForOneNumber_ShouldConvertCorrectly()
