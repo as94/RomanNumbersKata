@@ -10,6 +10,16 @@ namespace RomanNumbers.Core
             {
                 return "I";
             }
+
+            if (inputNumber == "2")
+            {
+                return "II";
+            }
+
+            if (inputNumber == "3")
+            {
+                return "III";
+            }
             
             return string.Empty;
         }
