@@ -5,7 +5,7 @@ namespace RomanNumbers.Core
 {
     public static class RomanNumbers
     {
-        private static readonly Dictionary<int, string> RomanNumbersTable = new Dictionary<int, string>()
+        private static readonly Dictionary<int, string> TensTable = new Dictionary<int, string>()
         {
             { 1, "I" },
             { 2, "II" },
@@ -33,7 +33,7 @@ namespace RomanNumbers.Core
 
             if (number <= 10)
             {
-                return RomanNumbersTable[number];
+                return TensTable[number];
             }
             
             return string.Empty;
