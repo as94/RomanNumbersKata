@@ -31,6 +31,16 @@ namespace RomanNumbers.Core
             {
                 return "IV";
             }
+
+            if (inputNumber == "5")
+            {
+                return "V";
+            }
+
+            if (inputNumber == "6")
+            {
+                return "VI";
+            }
             
             return string.Empty;
         }

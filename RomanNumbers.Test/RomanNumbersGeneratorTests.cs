@@ -46,13 +46,31 @@ namespace RomanNumbers.Test
             Assert.Equal("III", outputNumber);
         }
 
-//        [Fact]
-//        public void ForFourNumber_ShouldConvertCorrectly()
-//        {
-//            var inputNumber = "4";
-//            var outputNumber = Core.RomanNumbers.ConvertFromArabic(inputNumber);
-//
-//            Assert.Equal("IV", outputNumber);
-//        }
+        [Fact]
+        public void ForFourNumber_ShouldConvertCorrectly()
+        {
+            var inputNumber = "4";
+            var outputNumber = Core.RomanNumbers.ConvertFromArabic(inputNumber);
+
+            Assert.Equal("IV", outputNumber);
+        }
+
+        [Fact]
+        public void ForFiveNumber_ShouldConvertCorrectly()
+        {
+            var inputNumber = "5";
+            var outputNumber = Core.RomanNumbers.ConvertFromArabic(inputNumber);
+
+            Assert.Equal("V", outputNumber);
+        }
+
+        [Fact]
+        public void ForSixNumber_ShouldConvertCorrectly()
+        {
+            var inputNumber = "6";
+            var outputNumber = Core.RomanNumbers.ConvertFromArabic(inputNumber);
+
+            Assert.Equal("VI", outputNumber);
+        }
     }
 }
