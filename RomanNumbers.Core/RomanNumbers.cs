@@ -5,7 +5,7 @@ namespace RomanNumbers.Core
 {
     public static class RomanNumbers
     {
-        private static readonly Dictionary<int, string> FromOneToTenTable = new Dictionary<int, string>()
+        private static readonly Dictionary<int, string> FromOneToTenTable = new Dictionary<int, string>
         {
             { 1, "I" },
             { 2, "II" },
@@ -18,7 +18,7 @@ namespace RomanNumbers.Core
             { 9, "IX" }
         };
 
-        private static readonly Dictionary<int, string> FromTwentyToHundredTable = new Dictionary<int, string>()
+        private static readonly Dictionary<int, string> FromTwentyToNinetyTable = new Dictionary<int, string>
         {
             { 10, "X" },
             { 20, "XX" },
@@ -28,8 +28,21 @@ namespace RomanNumbers.Core
             { 60, "LX" },
             { 70, "LXX" },
             { 80, "LXXX" },
-            { 90, "XC" },
-            { 100, "C" }
+            { 90, "XC" }
+        };
+
+        private static readonly Dictionary<int, string> FromHundredToThousandTable = new Dictionary<int, string>
+        {
+            { 100, "C" },
+            { 200, "CC" },
+            { 300, "CCC" },
+            { 400, "CD" },
+            { 500, "D" },
+            { 600, "DC" },
+            { 700, "DCC" },
+            { 800, "DCCC" },
+            { 900, "CM" },
+            { 1000, "M" },
         };
         
         public static string ConvertFromArabic(string inputNumber)
@@ -49,13 +62,25 @@ namespace RomanNumbers.Core
                 return FromOneToTenTable[number];
             }
 
-            if (number >= 10 && number <= 100)
+            if (number >= 10 && number < 100)
             {
-                var secondDigit = number / 10;
-                var firstDigit = number % 10;
+                var secondDigitNumber = number / 10;
+                var firstDigitNumber = number % 10;
                 
-                return FromTwentyToHundredTable[secondDigit * 10] +
-                       (firstDigit == 0 ? string.Empty : FromOneToTenTable[firstDigit]);
+                return FromTwentyToNinetyTable[secondDigitNumber * 10] +
+                       (firstDigitNumber == 0 ? string.Empty : FromOneToTenTable[firstDigitNumber]);
+            }
+
+            if (number >= 100 && number <= 1000)
+            {
+                var thirdDigitNumber = number / 100;
+                var remainder = number - thirdDigitNumber * 100;
+                var secondDigitNumber = remainder / 10;
+                var firstDigitNumber = remainder % 10;
+                
+                return FromHundredToThousandTable[thirdDigitNumber * 100] + 
+                       (secondDigitNumber == 0 ? string.Empty : FromTwentyToNinetyTable[secondDigitNumber * 10]) +
+                       (firstDigitNumber == 0 ? string.Empty : FromOneToTenTable[firstDigitNumber]);
             }
             
             return string.Empty;
