@@ -1,11 +1,23 @@
 using System;
-using System.Linq;
+using System.Collections.Generic;
 
 namespace RomanNumbers.Core
 {
     public static class RomanNumbers
     {
-        private static int[] StartRange = Enumerable.Range(1, 3).ToArray();
+        private static readonly Dictionary<int, string> RomanNumbersTable = new Dictionary<int, string>()
+        {
+            { 1, "I" },
+            { 2, "II" },
+            { 3, "III" },
+            { 4, "IV" },
+            { 5, "V" },
+            { 6, "VI" },
+            { 7, "VII" },
+            { 8, "VIII" },
+            { 9, "IX" },
+            { 10, "X" }
+        };
         
         public static string ConvertFromArabic(string inputNumber)
         {
@@ -18,28 +30,10 @@ namespace RomanNumbers.Core
             {
                 throw new InvalidOperationException($"Input number format in incorrect: {inputNumber}");
             }
-            
-            foreach (var supposedNumber in StartRange)
-            {
-                if (number == supposedNumber)
-                {
-                    return new string('I', supposedNumber);
-                }
-            }
 
-            if (inputNumber == "4")
+            if (number <= 10)
             {
-                return "IV";
-            }
-
-            if (inputNumber == "5")
-            {
-                return "V";
-            }
-
-            if (inputNumber == "6")
-            {
-                return "VI";
+                return RomanNumbersTable[number];
             }
             
             return string.Empty;
