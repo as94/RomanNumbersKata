@@ -1,24 +1,35 @@
-using System.Collections.Generic;
+using System;
+using System.Linq;
 
 namespace RomanNumbers.Core
 {
     public static class RomanNumbers
     {
+        private static int[] StartRange = Enumerable.Range(1, 3).ToArray();
+        
         public static string ConvertFromArabic(string inputNumber)
         {
-            if (inputNumber == "1")
+            if (string.IsNullOrWhiteSpace(inputNumber))
             {
-                return "I";
+                throw new ArgumentNullException();
+            }
+            
+            if (!int.TryParse(inputNumber, out var number))
+            {
+                throw new InvalidOperationException($"Input number format in incorrect: {inputNumber}");
+            }
+            
+            foreach (var supposedNumber in StartRange)
+            {
+                if (number == supposedNumber)
+                {
+                    return new string('I', supposedNumber);
+                }
             }
 
-            if (inputNumber == "2")
+            if (inputNumber == "4")
             {
-                return "II";
-            }
-
-            if (inputNumber == "3")
-            {
-                return "III";
+                return "IV";
             }
             
             return string.Empty;
