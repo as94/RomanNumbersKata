@@ -2,7 +2,7 @@ using Xunit;
 
 namespace RomanNumbers.Test.RomanNumbersGeneratorTests
 {
-    public class FromHundredToThousandTests
+    public class FromHundredToNineHundredTests
     {
         [Fact]
         public void ForOneHundred_ShouldConvertCorrectly()
@@ -74,14 +74,6 @@ namespace RomanNumbers.Test.RomanNumbersGeneratorTests
             var inputNumber = "900";
             var outputNumber = Core.RomanNumbers.ConvertFromArabic(inputNumber);
             Assert.Equal("CM", outputNumber);
-        }
-
-        [Fact]
-        public void ForOneThousand_ShouldConvertCorrectly()
-        {
-            var inputNumber = "1000";
-            var outputNumber = Core.RomanNumbers.ConvertFromArabic(inputNumber);
-            Assert.Equal("M", outputNumber);
         }
 
         [Fact]

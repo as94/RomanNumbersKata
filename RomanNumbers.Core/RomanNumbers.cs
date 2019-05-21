@@ -31,7 +31,7 @@ namespace RomanNumbers.Core
             { 90, "XC" }
         };
 
-        private static readonly Dictionary<int, string> FromHundredToThousandTable = new Dictionary<int, string>
+        private static readonly Dictionary<int, string> FromOneHundredToNineHundredTable = new Dictionary<int, string>
         {
             { 100, "C" },
             { 200, "CC" },
@@ -42,7 +42,13 @@ namespace RomanNumbers.Core
             { 700, "DCC" },
             { 800, "DCCC" },
             { 900, "CM" },
+        };
+        
+        private static readonly Dictionary<int, string> FromOneThousandToThreeThousandTable = new Dictionary<int, string>
+        {
             { 1000, "M" },
+            { 2000, "MM" },
+            { 3000, "MMM" },
         };
         
         public static string ConvertFromArabic(string inputNumber)
@@ -71,19 +77,37 @@ namespace RomanNumbers.Core
                        (firstDigitNumber == 0 ? string.Empty : FromOneToTenTable[firstDigitNumber]);
             }
 
-            if (number >= 100 && number <= 1000)
+            if (number >= 100 && number < 1000)
             {
                 var thirdDigitNumber = number / 100;
                 var remainder = number - thirdDigitNumber * 100;
+                
                 var secondDigitNumber = remainder / 10;
                 var firstDigitNumber = remainder % 10;
                 
-                return FromHundredToThousandTable[thirdDigitNumber * 100] + 
+                return FromOneHundredToNineHundredTable[thirdDigitNumber * 100] + 
+                       (secondDigitNumber == 0 ? string.Empty : FromTwentyToNinetyTable[secondDigitNumber * 10]) +
+                       (firstDigitNumber == 0 ? string.Empty : FromOneToTenTable[firstDigitNumber]);
+            }
+
+            if (number >= 1000 && number < 4000)
+            {
+                var fourDigitNumber = number / 1000;
+                var remainder = number - fourDigitNumber * 1000;
+                
+                var thirdDigitNumber = remainder / 100;
+                remainder = remainder - thirdDigitNumber * 100;
+                
+                var secondDigitNumber = remainder / 10;
+                var firstDigitNumber = remainder % 10;
+                
+                return FromOneThousandToThreeThousandTable[fourDigitNumber * 1000] +
+                       (thirdDigitNumber == 0 ? string.Empty : FromOneHundredToNineHundredTable[thirdDigitNumber * 100]) + 
                        (secondDigitNumber == 0 ? string.Empty : FromTwentyToNinetyTable[secondDigitNumber * 10]) +
                        (firstDigitNumber == 0 ? string.Empty : FromOneToTenTable[firstDigitNumber]);
             }
             
-            return string.Empty;
+            throw new NotImplementedException();
         }
     }
 }

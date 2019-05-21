@@ -18,5 +18,13 @@ namespace RomanNumbers.Test.RomanNumbersGeneratorTests
 
             Assert.Throws<InvalidOperationException>(() => Core.RomanNumbers.ConvertFromArabic(input));
         }
+
+        [Fact]
+        public void ThrowNotImplEx_WhenInputFourThousandAndMore()
+        {
+            var input = "4000";
+            
+            Assert.Throws<NotImplementedException>(() => Core.RomanNumbers.ConvertFromArabic(input));
+        }
     }
 }
