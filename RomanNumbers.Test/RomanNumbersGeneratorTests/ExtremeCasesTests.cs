@@ -25,6 +25,16 @@ namespace RomanNumbers.Test.RomanNumbersGeneratorTests
         }
 
         [Fact]
+        public void ThrowArgumentOutOfRangeEx_WhenNegativeInputNumber()
+        {
+            var converter = new RomanNumbersConverter(new RomanTable(RomanTableOptions.GetDefault));
+            
+            var input = "-1";
+
+            Assert.Throws<ArgumentOutOfRangeException>(() => converter.FromArabic(input));
+        }
+
+        [Fact]
         public void ThrowNotImplEx_WhenInputTenThousandAndMore()
         {
             var converter = new RomanNumbersConverter(new RomanTable(RomanTableOptions.GetDefault));
