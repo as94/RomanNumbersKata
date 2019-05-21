@@ -1,3 +1,4 @@
+using RomanNumbers.Core;
 using Xunit;
 
 namespace RomanNumbers.Test.RomanNumbersGeneratorTests
@@ -7,8 +8,10 @@ namespace RomanNumbers.Test.RomanNumbersGeneratorTests
         [Fact]
         public void ForOneNumber_ShouldConvertCorrectly()
         {
+            var converter = new RomanNumbersConverter(new RomanTable(RomanTableOptions.GetDefault));
+
             var inputNumber = "1";
-            var outputNumber = Core.RomanNumbers.ConvertFromArabic(inputNumber);
+            var outputNumber = converter.FromArabic(inputNumber);
 
             Assert.Equal("I", outputNumber);
         }
@@ -16,8 +19,10 @@ namespace RomanNumbers.Test.RomanNumbersGeneratorTests
         [Fact]
         public void ForTwoNumber_ShouldConvertCorrectly()
         {
+            var converter = new RomanNumbersConverter(new RomanTable(RomanTableOptions.GetDefault));
+
             var inputNumber = "2";
-            var outputNumber = Core.RomanNumbers.ConvertFromArabic(inputNumber);
+            var outputNumber = converter.FromArabic(inputNumber);
 
             Assert.Equal("II", outputNumber);
         }
@@ -25,8 +30,10 @@ namespace RomanNumbers.Test.RomanNumbersGeneratorTests
         [Fact]
         public void ForThreeNumber_ShouldConvertCorrectly()
         {
+            var converter = new RomanNumbersConverter(new RomanTable(RomanTableOptions.GetDefault));
+
             var inputNumber = "3";
-            var outputNumber = Core.RomanNumbers.ConvertFromArabic(inputNumber);
+            var outputNumber = converter.FromArabic(inputNumber);
 
             Assert.Equal("III", outputNumber);
         }
@@ -34,8 +41,10 @@ namespace RomanNumbers.Test.RomanNumbersGeneratorTests
         [Fact]
         public void ForFourNumber_ShouldConvertCorrectly()
         {
+            var converter = new RomanNumbersConverter(new RomanTable(RomanTableOptions.GetDefault));
+
             var inputNumber = "4";
-            var outputNumber = Core.RomanNumbers.ConvertFromArabic(inputNumber);
+            var outputNumber = converter.FromArabic(inputNumber);
 
             Assert.Equal("IV", outputNumber);
         }
@@ -43,8 +52,10 @@ namespace RomanNumbers.Test.RomanNumbersGeneratorTests
         [Fact]
         public void ForFiveNumber_ShouldConvertCorrectly()
         {
+            var converter = new RomanNumbersConverter(new RomanTable(RomanTableOptions.GetDefault));
+
             var inputNumber = "5";
-            var outputNumber = Core.RomanNumbers.ConvertFromArabic(inputNumber);
+            var outputNumber = converter.FromArabic(inputNumber);
 
             Assert.Equal("V", outputNumber);
         }
@@ -52,8 +63,10 @@ namespace RomanNumbers.Test.RomanNumbersGeneratorTests
         [Fact]
         public void ForSixNumber_ShouldConvertCorrectly()
         {
+            var converter = new RomanNumbersConverter(new RomanTable(RomanTableOptions.GetDefault));
+
             var inputNumber = "6";
-            var outputNumber = Core.RomanNumbers.ConvertFromArabic(inputNumber);
+            var outputNumber = converter.FromArabic(inputNumber);
 
             Assert.Equal("VI", outputNumber);
         }
@@ -61,8 +74,10 @@ namespace RomanNumbers.Test.RomanNumbersGeneratorTests
         [Fact]
         public void ForSevenNumber_ShouldConvertCorrectly()
         {
+            var converter = new RomanNumbersConverter(new RomanTable(RomanTableOptions.GetDefault));
+
             var inputNumber = "7";
-            var outputNumber = Core.RomanNumbers.ConvertFromArabic(inputNumber);
+            var outputNumber = converter.FromArabic(inputNumber);
 
             Assert.Equal("VII", outputNumber);
         }
@@ -70,8 +85,10 @@ namespace RomanNumbers.Test.RomanNumbersGeneratorTests
         [Fact]
         public void ForEightNumber_ShouldConvertCorrectly()
         {
+            var converter = new RomanNumbersConverter(new RomanTable(RomanTableOptions.GetDefault));
+
             var inputNumber = "8";
-            var outputNumber = Core.RomanNumbers.ConvertFromArabic(inputNumber);
+            var outputNumber = converter.FromArabic(inputNumber);
 
             Assert.Equal("VIII", outputNumber);
         }
@@ -79,8 +96,10 @@ namespace RomanNumbers.Test.RomanNumbersGeneratorTests
         [Fact]
         public void ForNineNumber_ShouldConvertCorrectly()
         {
+            var converter = new RomanNumbersConverter(new RomanTable(RomanTableOptions.GetDefault));
+
             var inputNumber = "9";
-            var outputNumber = Core.RomanNumbers.ConvertFromArabic(inputNumber);
+            var outputNumber = converter.FromArabic(inputNumber);
 
             Assert.Equal("IX", outputNumber);
         }

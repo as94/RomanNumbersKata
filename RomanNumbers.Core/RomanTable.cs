@@ -3,63 +3,36 @@ using System.Collections.Generic;
 
 namespace RomanNumbers.Core
 {
-    public static class RomanTable
+    public sealed class RomanTable : INumericalDigitTable
     {
-        public static Dictionary<int, string> Get(int digitNumber)
+        private readonly Func<int, char[]> _getOptions;
+
+        public RomanTable(Func<int, char[]> getOptions)
         {
-            var digitNumberParams = GetOptions(digitNumber);
-            if (digitNumberParams != Array.Empty<char>())
-            {
-                var result = new Dictionary<int, string>();
-
-                var values = GetValue(
-                    digitNumberParams[0],
-                    digitNumberParams[1],
-                    digitNumberParams[2]);
-
-                var idx = 1;
-                var pow = (int)Math.Pow(10, digitNumber - 1);
-                foreach (var value in values)
-                {
-                    var key = idx * pow;
-                    result.Add(key, value);
-                    idx++;
-                }
-
-                return result;
-            }
-
-            if (digitNumber == 4)
-            {
-                return new Dictionary<int, string>
-                {
-                    {1000, "M"},
-                    {2000, "MM"},
-                    {3000, "MMM"},
-                };
-            }
-
-            throw new NotImplementedException();
+            _getOptions = getOptions ?? throw new ArgumentNullException(nameof(getOptions));
         }
-
-        private static char[] GetOptions(int digitNumber)
+    
+        public IDictionary<int, string> Build(int digitNumber)
         {
-            var digitNumberParams = Array.Empty<char>();
+            var digitNumberParams = _getOptions(digitNumber);
+            
+            var result = new Dictionary<int, string>();
 
-            switch (digitNumber)
+            var values = GetValue(
+                digitNumberParams[0],
+                digitNumberParams[1],
+                digitNumberParams[2]);
+
+            var idx = 1;
+            var pow = (int)Math.Pow(10, digitNumber - 1);
+            foreach (var value in values)
             {
-                case 1:
-                    digitNumberParams = new[] {'I', 'V', 'X'};
-                    break;
-                case 2:
-                    digitNumberParams = new[] {'X', 'L', 'C'};
-                    break;
-                case 3:
-                    digitNumberParams = new[] {'C', 'D', 'M'};
-                    break;
+                var key = idx * pow;
+                result.Add(key, value);
+                idx++;
             }
 
-            return digitNumberParams;
+            return result;
         }
 
         private static IEnumerable<string> GetValue(char oneSymbol, char fiveSymbol, char tenSymbol)

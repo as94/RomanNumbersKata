@@ -1,4 +1,5 @@
 using System;
+using RomanNumbers.Core;
 using Xunit;
 
 namespace RomanNumbers.Test.RomanNumbersGeneratorTests
@@ -8,23 +9,29 @@ namespace RomanNumbers.Test.RomanNumbersGeneratorTests
         [Fact]
         public void ThrowArgumentNullEx_WhenInputNull()
         {
-            Assert.Throws<ArgumentNullException>(() => Core.RomanNumbers.ConvertFromArabic(null));
+            var converter = new RomanNumbersConverter(new RomanTable(RomanTableOptions.GetDefault));
+            
+            Assert.Throws<ArgumentNullException>(() => converter.FromArabic(null));
         }
         
         [Fact]
         public void ThrowInvalidOperationEx_WhenBadInputNumberFormat()
         {
+            var converter = new RomanNumbersConverter(new RomanTable(RomanTableOptions.GetDefault));
+
             var input = "abc123";
 
-            Assert.Throws<InvalidOperationException>(() => Core.RomanNumbers.ConvertFromArabic(input));
+            Assert.Throws<InvalidOperationException>(() => converter.FromArabic(input));
         }
 
         [Fact]
-        public void ThrowNotImplEx_WhenInputFourThousandAndMore()
+        public void ThrowNotImplEx_WhenInputTenThousandAndMore()
         {
-            var input = "4000";
+            var converter = new RomanNumbersConverter(new RomanTable(RomanTableOptions.GetDefault));
+
+            var input = "10000";
             
-            Assert.Throws<NotImplementedException>(() => Core.RomanNumbers.ConvertFromArabic(input));
+            Assert.Throws<NotImplementedException>(() => converter.FromArabic(input));
         }
     }
 }

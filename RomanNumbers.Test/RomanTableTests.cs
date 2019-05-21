@@ -10,6 +10,8 @@ namespace RomanNumbers.Test
         [Fact]
         public void ForFirstDigitNumber_ShouldBeCorrect()
         {
+            var romanTable = new RomanTable(RomanTableOptions.GetDefault);
+            
             var expected = new Dictionary<int, string>
             {
                 {1, "I"},
@@ -23,7 +25,7 @@ namespace RomanNumbers.Test
                 {9, "IX"}
             };
 
-            var actual = RomanTable.Get(1);
+            var actual = romanTable.Build(1);
             
             Assert.Equal(expected, actual);
         }
@@ -31,6 +33,8 @@ namespace RomanNumbers.Test
         [Fact]
         public void ForSecondDigitNumber_ShouldBeCorrect()
         {
+            var romanTable = new RomanTable(RomanTableOptions.GetDefault);
+            
             var expected = new Dictionary<int, string>
             {
                 {10, "X"},
@@ -44,7 +48,7 @@ namespace RomanNumbers.Test
                 {90, "XC"}
             };
 
-            var actual = RomanTable.Get(2);
+            var actual = romanTable.Build(2);
 
             Assert.Equal(expected, actual);
         }
@@ -52,6 +56,8 @@ namespace RomanNumbers.Test
         [Fact]
         public void ForThirdDigitNumber_ShouldBeCorrect()
         {
+            var romanTable = new RomanTable(RomanTableOptions.GetDefault);
+            
             var expected = new Dictionary<int, string>
             {
                 {100, "C"},
@@ -65,7 +71,7 @@ namespace RomanNumbers.Test
                 {900, "CM"},
             };
 
-            var actual = RomanTable.Get(3);
+            var actual = romanTable.Build(3);
 
             Assert.Equal(expected, actual);
         }
@@ -73,14 +79,22 @@ namespace RomanNumbers.Test
         [Fact]
         public void ForFourDigitNumber_ShouldBeCorrect_OnlyForOneTwoThree()
         {
+            var romanTable = new RomanTable(RomanTableOptions.GetDefault);
+            
             var expected = new Dictionary<int, string>
             {
                 {1000, "M"},
                 {2000, "MM"},
                 {3000, "MMM"},
+                {4000, "MV"},
+                {5000, "V"},
+                {6000, "VM"},
+                {7000, "VMM"},
+                {8000, "VMMM"},
+                {9000, "MX"},
             };
 
-            var actual = RomanTable.Get(4);
+            var actual = romanTable.Build(4);
 
             Assert.Equal(expected, actual);
         }
@@ -88,9 +102,11 @@ namespace RomanNumbers.Test
         [Fact]
         public void ForFiveDigitNumberAndMore_ShouldBeNotImplemented()
         {
-            Assert.Throws<NotImplementedException>(() => RomanTable.Get(5));
-            Assert.Throws<NotImplementedException>(() => RomanTable.Get(6));
-            Assert.Throws<NotImplementedException>(() => RomanTable.Get(100500));
+            var romanTable = new RomanTable(RomanTableOptions.GetDefault);
+            
+            Assert.Throws<NotImplementedException>(() => romanTable.Build(5));
+            Assert.Throws<NotImplementedException>(() => romanTable.Build(6));
+            Assert.Throws<NotImplementedException>(() => romanTable.Build(100500));
         }
         
     }
