@@ -43,5 +43,15 @@ namespace RomanNumbers.Test.RomanNumbersGeneratorTests
             
             Assert.Throws<NotImplementedException>(() => converter.FromArabic(input));
         }
+
+        [Fact]
+        public void ForZero_ShouldBeEmptyString()
+        {
+            var converter = new RomanNumbersConverter(new RomanTable(RomanTableOptions.GetDefault));
+
+            var input = "0";
+            
+            Assert.Equal(string.Empty, converter.FromArabic(input));
+        }
     }
 }
